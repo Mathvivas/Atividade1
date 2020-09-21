@@ -32,11 +32,6 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
     }
 
     @Override
-    public void update(Manga manga) {
-
-    }
-
-    @Override
     public void delete(Manga manga) {
 
     }
@@ -53,11 +48,6 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
 
     @Override
     public String getDeleteString(String table) {
-        return null;
-    }
-
-    @Override
-    public String getUpdateString(String table) {
         return null;
     }
 

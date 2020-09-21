@@ -32,11 +32,6 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
     }
 
     @Override
-    public void update(Anime anime) {
-
-    }
-
-    @Override
     public void delete(Anime anime) {
 
     }
@@ -48,17 +43,12 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
 
     @Override
     public String getTableName() {
-        return null;
+        return "anime";
     }
 
     @Override
     public String getDeleteString(String table) {
-        return null;
-    }
-
-    @Override
-    public String getUpdateString(String table) {
-        return null;
+        return "DELETE FROM " + table + " WHERE nome = ?";
     }
 
     @Override
