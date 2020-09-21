@@ -4,9 +4,8 @@ import br.maua.dao.DAO;
 import br.maua.dao.DAOFields;
 import br.maua.model.Anime;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnimeDAO implements DAO<Anime>, DAOFields {
@@ -23,22 +22,79 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
 
     @Override
     public List<Anime> get(String condition) {
-        return null;
+        List<Anime> animes = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + condition);
+            while (resultSet.next()) {
+                Anime anime = new Anime(
+                        resultSet.getString("nome"),
+                        resultSet.getString("url"),
+                        resultSet.getString("sinopse"),
+                        resultSet.getInt("episodios"),
+                        resultSet.getDouble("nota")
+                );
+                animes.add(anime);
+            }
+            resultSet.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return animes;
     }
 
     @Override
     public List<Anime> getAll() {
-        return null;
+        List<Anime> animes = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getSelectAllString(getTableName()));
+            while (resultSet.next()) {
+                Anime anime = new Anime(
+                        resultSet.getString("nome"),
+                        resultSet.getString("url"),
+                        resultSet.getString("sinopse"),
+                        resultSet.getInt("episodios"),
+                        resultSet.getDouble("nota")
+                );
+                animes.add(anime);
+            }
+            resultSet.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return animes;
     }
 
     @Override
     public void delete(Anime anime) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getDeleteString(getTableName()));
+            preparedStatement.setString(1, anime.getNome());
+            preparedStatement.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void create(Anime anime) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
+            preparedStatement.setString(1, anime.getNome());
+            preparedStatement.setString(2, anime.getUrl());
+            preparedStatement.setString(3, anime.getSinopse());
+            preparedStatement.setInt(4, anime.getEpisodios());
+            preparedStatement.setDouble(5, anime.getNota());
 
+            int retorno = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -52,17 +108,17 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
     }
 
     @Override
-    public String getInsertString(String tabel) {
-        return null;
+    public String getInsertString(String table) {
+        return "INSERT INTO " + table + " (nome, url, sinopse, episodios, nota) VALUES (?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getSelectAllString(String table) {
-        return null;
+        return "SELECT * FROM " + table;
     }
 
     @Override
     public String getSelectConditionalString(String table) {
-        return null;
+        return "SELECT * FROM " + table + " WHERE ";
     }
 }
