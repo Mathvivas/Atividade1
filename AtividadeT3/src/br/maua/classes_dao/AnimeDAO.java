@@ -21,11 +21,11 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
     }
 
     @Override
-    public List<Anime> get(String condition) {
+    public List<Anime> get(String item, String valor) {
         List<Anime> animes = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + condition);
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + item + " = " + valor);
             while (resultSet.next()) {
                 Anime anime = new Anime(
                         resultSet.getString("nome"),

@@ -21,11 +21,11 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
     }
 
     @Override
-    public List<Manga> get(String condition) {
+    public List<Manga> get(String item, String valor) {
         List<Manga> mangas = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + condition);
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + item + " = " + valor);
             while (resultSet.next()) {
                 Manga manga = new Manga(
                         resultSet.getString("nome"),
