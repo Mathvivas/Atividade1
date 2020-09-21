@@ -4,7 +4,6 @@ import br.maua.dao.DAO;
 import br.maua.dao.DAOFields;
 import br.maua.model.Manga;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +94,7 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
             preparedStatement.setDouble(7, manga.getNota());
 
             int retorno = preparedStatement.executeUpdate();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
