@@ -21,11 +21,11 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
     }
 
     @Override
-    public List<Manga> get(String item, String valor) {
+    public List<Manga> get(String valor) {
         List<Manga> mangas = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + item + " = " + valor);
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + valor);
             while (resultSet.next()) {
                 Manga manga = new Manga(
                         resultSet.getString("nome"),
@@ -71,17 +71,6 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
     }
 
     @Override
-    public void delete(Manga manga) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getDeleteString(getTableName()));
-            preparedStatement.setString(1, manga.getNome());
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void create(Manga manga) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(getInsertString(getTableName()));
@@ -106,11 +95,6 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
     }
 
     @Override
-    public String getDeleteString(String table) {
-        return "DELETE FROM " + table + " WHERE nome = ?";
-    }
-
-    @Override
     public String getInsertString(String table) {
         return "INSERT INTO " + table + " (nome, url, sinopse, capitulos, volumes, tipo, nota) VALUES (?, ?, ?, ?, ?, ?, ?);";
     }
@@ -122,6 +106,6 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
 
     @Override
     public String getSelectConditionalString(String table) {
-        return "SELECT * FROM " + table + " WHERE ";
+        return "SELECT * FROM " + table + " WHERE nome = ";
     }
 }

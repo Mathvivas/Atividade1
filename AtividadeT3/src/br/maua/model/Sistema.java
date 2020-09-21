@@ -13,8 +13,36 @@ public class Sistema {
     private MangaDAO mangaDAO;
     private Scanner scanner;
 
+    public void run() {
+        boolean on = true;
+
+        do {
+            menu();
+            System.out.println("\nO que deseja?: ");
+            int op = scanner.nextInt();
+
+            switch (op) {
+                case 1:
+
+                case 0:
+                    on = false;
+                    break;
+                default:
+                    System.out.println("Opção Inválida!");
+                    break;
+            }
+
+        } while (on);
+    }
 
 
+    public void menu() {
+        System.out.println("\n|_________| MENU |_________");
+        System.out.println("| 1 - Procurar um Anime");
+        System.out.println("| 2 - Procurar um Mangá");
+        System.out.println("| 0 - Sair");
+        System.out.println("|__________________________");
+    }
 
     public void exibirAnime() {
         animes = animeDAO.getAll();
