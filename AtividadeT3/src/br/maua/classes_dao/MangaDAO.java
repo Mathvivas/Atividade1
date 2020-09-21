@@ -4,9 +4,23 @@ import br.maua.dao.DAO;
 import br.maua.dao.DAOFields;
 import br.maua.model.Manga;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MangaDAO implements DAO<Manga>, DAOFields {
+    private Connection connection;
+    private String myDBConnectionString = "jdbc:sqlite:Dados_SQL.db";
+
+    public MangaDAO() {
+        try {
+            connection = DriverManager.getConnection(myDBConnectionString);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     @Override
     public List<Manga> get(String condition) {
         return null;
