@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 public class API {
 
-    public void LeituraAPI(String nome) throws Exception {
+    public void leituraAPI(String nome) throws Exception {
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(
                 "https://api.jikan.moe/v3/search/anime?q=" + nome)).build();
