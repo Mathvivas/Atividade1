@@ -4,9 +4,23 @@ import br.maua.dao.DAO;
 import br.maua.dao.DAOFields;
 import br.maua.model.Anime;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 public class AnimeDAO implements DAO<Anime>, DAOFields {
+    private Connection connection;
+    private String myDBConnectionString = "jdbc:sqlite:Dados_SQL.db";
+
+    public AnimeDAO() {
+        try {
+            connection = DriverManager.getConnection(myDBConnectionString);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     @Override
     public List<Anime> get(String condition) {
         return null;
