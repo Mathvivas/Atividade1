@@ -38,6 +38,7 @@ public class Sistema {
                     procurarAnime();
                     break;
                 case 2:
+                    procurarManga();
                     break;
                 case 0:
                     on = false;
@@ -82,7 +83,21 @@ public class Sistema {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
+    }
+
+    public void procurarManga() {
+        System.out.println("\nDigite o nome do Mangá desejado: ");
+        String nome = scanner.next();
+        if (!mangaDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
+            exibirManga();
+        else {                                 // Procurar na API e adicionar no Banco de Dados
+            try {
+                api.leituraAPI(nome);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     }
 }
