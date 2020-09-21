@@ -19,14 +19,17 @@ public class Conta {
     }
 
     public Usuário getUsuário() {
+
         return usuário;
     }
 
     public int getID() {
+
         return ID;
     }
 
     public double getsaldo() {
+
         return saldo;
     }
 }

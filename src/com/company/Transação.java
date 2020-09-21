@@ -7,7 +7,7 @@
 package com.company;
 
 import java.util.Random;
-import java.util.Scanner;
+import java.lang.String;
 
 public class Transação {
 
@@ -16,23 +16,31 @@ public class Transação {
         return r.nextInt((max - min) + 1) + min;
     }
 
-    static Scanner scanner = new Scanner(System.in);
 
-
-    public static int Gerar(Conta conta) {
-        System.out.println("Digite o valor: ");
-        double valor = scanner.nextDouble();
+    public static int GerarCode(Conta conta, double valor) {
         String s = String.format("%s;%s;%i;i", conta.getID(), conta.getUsuário(), valor, getRandomNumberInRange(1000, 9999));
         String dados[] = s.split(";");
         int ID = Integer.parseInt(dados[0]);
         return ID;
     }
 
-    public static boolean Tranferir(Conta c1, Conta c2) {
-        if (c1.getID() == c2.getID())
-            System.out.println("Não é possível transferir para si mesmo!");
+    public static double Transferir(Conta c1, Conta c2, double valor) {
+        if (c1.getID() == GerarCode(c1, valor)) {
+            if (c2.getsaldo() >= valor) {
+                double x = c1.getsaldo() + valor;
+                double y = c2.getsaldo() - valor;
+                System.out.println("Transferência bem sucedida!");
+                System.out.println("Saldo atual ("+ c1.getUsuário() +"): " + x);
+                System.out.println("Saldo atual ("+ c2.getUsuário() +"): " + y);
+
+            }
+            else
+                System.out.println("Saldo insuficiente!");
+        }
         else
-            
+            System.out.println("Usuário não reconhecido!");
+
+        return Transferir(c1, c2, valor);
     }
 
 }
