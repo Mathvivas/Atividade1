@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ArrayParser {
 
-    public static List<Anime> parseJson(String json) {
+    public List<Anime> parseJson(String json) {
         JSONObject retorno = new JSONObject(json);
         JSONArray animesJson = retorno.getJSONArray("results");
         List<Anime> animes = new ArrayList<>();
@@ -19,8 +19,8 @@ public class ArrayParser {
                     ((JSONObject)anime).getString("title"),
                     ((JSONObject)anime).getString("image_url"),
                     ((JSONObject)anime).getString("synopsis"),
-                    Integer.parseInt(((JSONObject)anime).getString("episodes")),
-                            Integer.parseInt(((JSONObject)anime).getString("score"))));
+                    ((JSONObject)anime).getInt("episodes"),
+                    ((JSONObject)anime).getInt("score")));
         }
         return animes;
     }
