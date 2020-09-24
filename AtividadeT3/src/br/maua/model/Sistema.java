@@ -79,7 +79,7 @@ public class Sistema {
             exibirAnime();
         else {                                 // Procurar na API e adicionar no Banco de Dados
             try {
-                api.leituraAPI(nome);
+                api.leituraAPIAnime(nome);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -93,7 +93,7 @@ public class Sistema {
             exibirManga();
         else {                                 // Procurar na API e adicionar no Banco de Dados
             try {
-                api.leituraAPI(nome);
+                api.leituraAPIManga(nome);
             } catch (Exception e) {
                 e.printStackTrace();
             }
