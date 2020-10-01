@@ -8,8 +8,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsável por transformar o conteúdo retornado pela API em um formato JSON.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
 public class ArrayParser {
 
+    /**
+     *
+     * @param json Conteúdo no formato JSON.
+     * @return Retorna uma lista de Animes.
+     */
     public List<Anime> parseJsonAnime(String json) {
         JSONObject retorno = new JSONObject(json);
         JSONArray animesJson = retorno.getJSONArray("results");
@@ -26,6 +36,11 @@ public class ArrayParser {
         return animes;
     }
 
+    /**
+     *
+     * @param json Conteúdo no formato JSON.
+     * @return Retorna uma lista de Mangás.
+     */
     public List<Manga> parseJsonManga(String json) {
         JSONObject retorno = new JSONObject(json);
         JSONArray mangasJson = retorno.getJSONArray("results");

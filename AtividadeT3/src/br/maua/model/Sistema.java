@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe responsável pelo sistema principal do programa. Ela é quem interage com o usuário.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
 public class Sistema {
     private List<Anime> animes;
     private List<Manga> mangas;
@@ -16,6 +21,9 @@ public class Sistema {
     private Scanner scanner;
     private API api;
 
+    /**
+     * Construtor da Classe.
+     */
     public Sistema() {
         animes = new ArrayList<>();
         mangas = new ArrayList<>();
@@ -25,6 +33,9 @@ public class Sistema {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Método responsável por rodar o programa.
+     */
     public void run() {
         boolean on = true;
 
@@ -52,6 +63,9 @@ public class Sistema {
     }
 
 
+    /**
+     * Método responsável pelo menu de opções do usuário.
+     */
     public void menu() {
         System.out.println("\n|_________| MENU |_________|");
         System.out.println("| 1 - Procurar um Anime");
@@ -60,18 +74,27 @@ public class Sistema {
         System.out.println("|__________________________|");
     }
 
+    /**
+     * Método responsável por exibir as características do Anime.
+     */
     public void exibirAnime() {
         animes = animeDAO.getAll();
         System.out.println("Anime: ");
         animes.forEach(anime -> System.out.println(anime));
     }
 
+    /**
+     * Método responsável por exibir as características do Mangá.
+     */
     public void exibirManga() {
         mangas = mangaDAO.getAll();
         System.out.println("Manga: ");
         mangas.forEach(manga -> System.out.println(manga));
     }
 
+    /**
+     * Método responsável por procurar o Anime desejado no Banco de Dados ou na API.
+     */
     public void procurarAnime() {
         System.out.println("\nDigite o nome do Anime desejado: ");
         String nome = scanner.next();
@@ -86,6 +109,9 @@ public class Sistema {
         }
     }
 
+    /**
+     * Método responsável por procurar o Mangá desejado no Banco de Dados ou na API.
+     */
     public void procurarManga() {
         System.out.println("\nDigite o nome do Mangá desejado: ");
         String nome = scanner.next();

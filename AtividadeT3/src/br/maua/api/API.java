@@ -7,9 +7,19 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Classe que se conecta com a API.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
 public class API {
     ArrayParser arrayParser;
 
+    /**
+     *
+     * @param nome Nome do Anime desejado pelo usuário.
+     * @throws Exception Evitar que o programa pare de executar caso encontre uma exceção.
+     */
     public void leituraAPIAnime(String nome) throws Exception {
         arrayParser = new ArrayParser();
 
@@ -22,6 +32,11 @@ public class API {
         System.out.println(arrayParser.parseJsonAnime(response.body()));
     }
 
+    /**
+     *
+     * @param nome Nome do Mangá desejado pelo usuário.
+     * @throws Exception Evitar que o programa pare de executar caso encontre uma exceção.
+     */
     public void leituraAPIManga(String nome) throws Exception {
         arrayParser = new ArrayParser();
 

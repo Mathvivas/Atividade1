@@ -8,10 +8,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Classe que representa o Anime no Banco de Dados. Implementa os métodos das Interfaces.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
 public class AnimeDAO implements DAO<Anime>, DAOFields {
     private Connection connection;
     private String myDBConnectionString = "jdbc:sqlite:Dados_SQL.db";
 
+    /**
+     * Construtor da Classe
+     */
     public AnimeDAO() {
         try {
             connection = DriverManager.getConnection(myDBConnectionString);

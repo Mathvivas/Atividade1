@@ -1,5 +1,10 @@
 package br.maua.model;
 
+/**
+ * Classe responsável pro representar o Mangá.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
 public class Manga {
     private String nome;
     private String url;
@@ -9,6 +14,17 @@ public class Manga {
     private String tipo;
     private double nota;
 
+
+    /**
+     *
+     * @param nome Nome do Mangá.
+     * @param url Url da imagem do Mangá.
+     * @param sinopse Sinópse do Mangá.
+     * @param capitulos Número de capítulos do Mangá.
+     * @param volumes Número de volumes do Mangá.
+     * @param tipo Tipo do Mangá.
+     * @param nota Nota do Mangá.
+     */
     public Manga(String nome, String url, String sinopse, int capitulos, int volumes, String tipo, double nota) {
         this.nome = nome;
         this.url = url;

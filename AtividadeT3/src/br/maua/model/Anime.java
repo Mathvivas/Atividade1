@@ -1,5 +1,10 @@
 package br.maua.model;
 
+/**
+ * Classe responsável por representar o Anime.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
 public class Anime {
     private String nome;
     private String url;
@@ -7,6 +12,14 @@ public class Anime {
     private int episodios;
     private double nota;
 
+    /**
+     *
+     * @param nome Nome do Anime.
+     * @param url Url da imagem do Anime.
+     * @param sinopse Sinópse do Anime.
+     * @param episodios Quantidade de episódios do Anime.
+     * @param nota Nota do Anime.
+     */
     public Anime(String nome, String url, String sinopse, int episodios, double nota) {
         this.nome = nome;
         this.url = url;
