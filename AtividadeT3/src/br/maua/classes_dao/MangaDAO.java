@@ -33,7 +33,7 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
         List<Manga> mangas = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + valor);
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName(), valor));
             while (resultSet.next()) {
                 Manga manga = new Manga(
                         resultSet.getString("nome"),
@@ -113,7 +113,7 @@ public class MangaDAO implements DAO<Manga>, DAOFields {
     }
 
     @Override
-    public String getSelectConditionalString(String table) {
-        return "SELECT * FROM " + table + " WHERE nome = ";
+    public String getSelectConditionalString(String table, String nome) {
+        return "SELECT * FROM " + table + " WHERE nome = " + "'" + nome + "'";
     }
 }

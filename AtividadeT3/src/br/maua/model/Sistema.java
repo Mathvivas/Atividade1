@@ -79,7 +79,7 @@ public class Sistema {
      * Método responsável pelo menu de opções do usuário.
      */
     public void menu() {
-        System.out.println("\n|_________| MENU |_________|");
+        System.out.println("\n|____________| MENU |____________|");
         System.out.println("| 1 - Cadastrar Anime");
         System.out.println("| 2 - Cadastrar Mangá");
         System.out.println("| 3 - Procurar um Anime");
@@ -87,7 +87,7 @@ public class Sistema {
         System.out.println("| 5 - Exibir todos os Animes");
         System.out.println("| 6 - Exibir todos os Mangás");
         System.out.println("| 0 - Sair");
-        System.out.println("|__________________________|");
+        System.out.println("|________________________________|");
     }
 
     /**
@@ -166,7 +166,6 @@ public class Sistema {
         String nome1 = scanner.next();
         String nome2 = scanner.nextLine();
         String nome = nome1 + nome2;
-        System.out.println(nome);
         if (!mangaDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
             exibirManga(nome);
         else{

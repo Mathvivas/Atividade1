@@ -34,7 +34,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
         List<Anime> animes = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName()) + valor);
+            ResultSet resultSet = statement.executeQuery(getSelectConditionalString(getTableName(), valor));
             while (resultSet.next()) {
                 Anime anime = new Anime(
                         resultSet.getString("nome"),
@@ -110,7 +110,7 @@ public class AnimeDAO implements DAO<Anime>, DAOFields {
     }
 
     @Override
-    public String getSelectConditionalString(String table) {
-        return "SELECT * FROM " + table + " WHERE nome = ";
+    public String getSelectConditionalString(String table, String nome) {
+        return "SELECT * FROM " + table + " WHERE nome = " + "'" + nome + "'";
     }
 }
