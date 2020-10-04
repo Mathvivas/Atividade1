@@ -1,5 +1,7 @@
 package br.maua.json;
 
+import br.maua.classes_dao.AnimeDAO;
+import br.maua.classes_dao.MangaDAO;
 import br.maua.model.Anime;
 import br.maua.model.Manga;
 import org.json.JSONArray;
@@ -24,6 +26,7 @@ public class ArrayParser {
         JSONObject retorno = new JSONObject(json);
         JSONArray animesJson = retorno.getJSONArray("results");
         List<Anime> animes = new ArrayList<>();
+        AnimeDAO animeDAO = new AnimeDAO();
 
         for (Object anime: animesJson) {
             animes.add(new Anime(
@@ -33,6 +36,10 @@ public class ArrayParser {
                     ((JSONObject)anime).getInt("episodes"),
                     ((JSONObject)anime).getInt("score")));
         }
+
+        for (int i = 0; i < animes.size(); i++)
+            animeDAO.create(animes.get(i));
+
         return animes;
     }
 
@@ -45,6 +52,7 @@ public class ArrayParser {
         JSONObject retorno = new JSONObject(json);
         JSONArray mangasJson = retorno.getJSONArray("results");
         List<Manga> mangas = new ArrayList<>();
+        MangaDAO mangaDAO = new MangaDAO();
 
         for (Object manga: mangasJson) {
             mangas.add(new Manga(
@@ -56,6 +64,10 @@ public class ArrayParser {
                     ((JSONObject)manga).getString("type"),
                     ((JSONObject)manga).getInt("score")));
         }
+
+        for (int i = 0; i < mangas.size(); i++)
+            mangaDAO.create(mangas.get(i));
+
         return mangas;
     }
 }
