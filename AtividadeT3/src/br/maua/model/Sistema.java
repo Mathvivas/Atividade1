@@ -49,13 +49,19 @@ public class Sistema {
                     cadastrarAnime();
                     break;
                 case 2:
-                    exibirAnime();
-                    break;
-                case 3:
                     cadastrarManga();
                     break;
+                case 3:
+                    procurarAnime();
+                    break;
                 case 4:
-                    exibirManga();
+                    procurarManga();
+                    break;
+                case 5:
+                    exibirTodoAnime();
+                    break;
+                case 6:
+                    exibirTodoManga();
                     break;
                 case 0:
                     on = false;
@@ -74,27 +80,29 @@ public class Sistema {
      */
     public void menu() {
         System.out.println("\n|_________| MENU |_________|");
-        System.out.println("| 1 - Cadastrar um Anime");
-        System.out.println("| 2 - Exibir os Animes");
-        System.out.println("| 3 - Cadastrar um Mangá");
-        System.out.println("| 4 - Exibir os Mangás");
+        System.out.println("| 1 - Cadastrar Anime");
+        System.out.println("| 2 - Cadastrar Mangá");
+        System.out.println("| 3 - Procurar um Anime");
+        System.out.println("| 4 - Procurar um Mangá");
+        System.out.println("| 5 - Exibir todos os Animes");
+        System.out.println("| 6 - Exibir todos os Mangás");
         System.out.println("| 0 - Sair");
         System.out.println("|__________________________|");
     }
 
     /**
-     * Método responsável por exibir as características do Anime.
+     * Método responsável por exibir todos os Animes.
      */
-    public void exibirAnime() {
+    public void exibirTodoAnime() {
         animes = animeDAO.getAll();
         System.out.println("Anime: ");
         animes.forEach(anime -> System.out.println(anime));
     }
 
     /**
-     * Método responsável por exibir as características do Mangá.
+     * Método responsável por exibir todos os Mangás.
      */
-    public void exibirManga() {
+    public void exibirTodoManga() {
         mangas = mangaDAO.getAll();
         System.out.println("Manga: ");
         mangas.forEach(manga -> System.out.println(manga));
@@ -124,6 +132,55 @@ public class Sistema {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Método responsável por procurar o Anime desejado no Banco de Dados ou na API.
+     */
+    public void procurarAnime() {
+        System.out.println("\nDigite exatamente o nome do Anime desejado: ");
+        String nome1 = scanner.next();
+        String nome2 = scanner.nextLine();
+        String nome = nome1 + nome2;
+        if (!animeDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
+            exibirAnime(nome);
+        else{
+            System.out.println("Não existe este anime nos registros!");
+        }
+    }
+
+    /**
+     * Método responsável por exibir as características do Mangá.
+     */
+    public void exibirAnime(String nome) {
+        animes = animeDAO.get(nome);
+        System.out.println("Anime: ");
+        animes.forEach(anime -> System.out.println(anime));
+    }
+
+    /**
+     * Método responsável por procurar o Mangá desejado no Banco de Dados ou na API.
+     */
+    public void procurarManga() {
+        System.out.println("\nDigite exatamente o nome do Mangá desejado: ");
+        String nome1 = scanner.next();
+        String nome2 = scanner.nextLine();
+        String nome = nome1 + nome2;
+        System.out.println(nome);
+        if (!mangaDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
+            exibirManga(nome);
+        else{
+            System.out.println("Não existe este mangá nos registros!");
+        }
+    }
+
+    /**
+     * Método responsável por exibir as características do Mangá.
+     */
+    public void exibirManga(String nome) {
+        mangas = mangaDAO.get(nome);
+        System.out.println("Manga: ");
+        mangas.forEach(manga -> System.out.println(manga));
     }
 }
 
