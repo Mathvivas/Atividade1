@@ -49,7 +49,13 @@ public class Sistema {
                     procurarAnime();
                     break;
                 case 2:
+                    cadastrarAnime();
+                    break;
+                case 3:
                     procurarManga();
+                    break;
+                case 4:
+                    cadastrarManga();
                     break;
                 case 0:
                     on = false;
@@ -95,36 +101,36 @@ public class Sistema {
     }
 
     /**
-     * Método responsável por procurar o Anime desejado no Banco de Dados ou na API.
+     * Método responsável por procurar o Anime desejado no Banco de Dados.
      */
     public void procurarAnime() {
+        exibirAnime();
+    }
+
+    public void cadastrarAnime() {
         System.out.println("\nDigite o nome do Anime desejado: ");
         String nome = scanner.next();
-        if (!animeDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
-            System.out.println(animeDAO.getSelectConditionalString("anime") + nome);
-        else {                                 // Procurar na API e adicionar no Banco de Dados
-            try {
-                api.leituraAPIAnime(nome);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            api.leituraAPIAnime(nome);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * Método responsável por procurar o Mangá desejado no Banco de Dados ou na API.
+     * Método responsável por procurar o Mangá desejado no Banco de Dados.
      */
     public void procurarManga() {
+
+    }
+
+    public void cadastrarManga() {
         System.out.println("\nDigite o nome do Mangá desejado: ");
         String nome = scanner.next();
-        if (!mangaDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
-            exibirManga();
-        else {                                 // Procurar na API e adicionar no Banco de Dados
-            try {
-                api.leituraAPIManga(nome);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            api.leituraAPIManga(nome);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

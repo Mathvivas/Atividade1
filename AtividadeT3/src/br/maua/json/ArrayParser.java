@@ -37,6 +37,9 @@ public class ArrayParser {
                     ((JSONObject)anime).getInt("score")));
         }
 
+        for (int i = 0; i < animes.size(); i++)
+            animeDAO.create(animes.get(i));
+
         return animes;
     }
 
