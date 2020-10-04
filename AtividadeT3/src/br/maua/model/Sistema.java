@@ -46,16 +46,16 @@ public class Sistema {
 
             switch (op) {
                 case 1:
-                    procurarAnime();
-                    break;
-                case 2:
                     cadastrarAnime();
                     break;
+                case 2:
+                    exibirAnime();
+                    break;
                 case 3:
-                    procurarManga();
+                    cadastrarManga();
                     break;
                 case 4:
-                    cadastrarManga();
+                    exibirManga();
                     break;
                 case 0:
                     on = false;
@@ -74,10 +74,10 @@ public class Sistema {
      */
     public void menu() {
         System.out.println("\n|_________| MENU |_________|");
-        System.out.println("| 1 - Procurar um Anime");
-        System.out.println("| 2 - Cadastrar um Anime");
-        System.out.println("| 3 - Procurar um Mangá");
+        System.out.println("| 1 - Cadastrar um Anime");
+        System.out.println("| 2 - Exibir os Animes");
         System.out.println("| 3 - Cadastrar um Mangá");
+        System.out.println("| 4 - Exibir os Mangás");
         System.out.println("| 0 - Sair");
         System.out.println("|__________________________|");
     }
@@ -101,12 +101,8 @@ public class Sistema {
     }
 
     /**
-     * Método responsável por procurar o Anime desejado no Banco de Dados.
+     * Método responsável por cadastrar o Anime desejado no Banco de Dados.
      */
-    public void procurarAnime() {
-        exibirAnime();
-    }
-
     public void cadastrarAnime() {
         System.out.println("\nDigite o nome do Anime desejado: ");
         String nome = scanner.next();
@@ -118,12 +114,8 @@ public class Sistema {
     }
 
     /**
-     * Método responsável por procurar o Mangá desejado no Banco de Dados.
+     * Método responsável por cadastrar o Mangá desejado no Banco de Dados.
      */
-    public void procurarManga() {
-
-    }
-
     public void cadastrarManga() {
         System.out.println("\nDigite o nome do Mangá desejado: ");
         String nome = scanner.next();
