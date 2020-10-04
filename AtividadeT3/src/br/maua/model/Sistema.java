@@ -69,7 +69,9 @@ public class Sistema {
     public void menu() {
         System.out.println("\n|_________| MENU |_________|");
         System.out.println("| 1 - Procurar um Anime");
-        System.out.println("| 2 - Procurar um Mangá");
+        System.out.println("| 2 - Cadastrar um Anime");
+        System.out.println("| 3 - Procurar um Mangá");
+        System.out.println("| 3 - Cadastrar um Mangá");
         System.out.println("| 0 - Sair");
         System.out.println("|__________________________|");
     }
@@ -99,7 +101,7 @@ public class Sistema {
         System.out.println("\nDigite o nome do Anime desejado: ");
         String nome = scanner.next();
         if (!animeDAO.get(nome).isEmpty())        // Primeiramente, procurar no Banco de Dados
-            exibirAnime();
+            System.out.println(animeDAO.getSelectConditionalString("anime") + nome);
         else {                                 // Procurar na API e adicionar no Banco de Dados
             try {
                 api.leituraAPIAnime(nome);
