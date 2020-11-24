@@ -93,12 +93,10 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
         TODO("Not yet implemented")
     }
 
-    override fun getTableName(): String {
-        TODO("Not yet implemented")
-    }
+    override fun getTableName(): String { return "Personagem" }
 
     override fun getDeleteString(table: String): String {
-        TODO("Not yet implemented")
+        return "DELETE FROM " + table + "WHERE id = ?;"
     }
 
     override fun getUpdateString(table: String): String {
@@ -106,14 +104,15 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     }
 
     override fun getInsertString(table: String): String {
-        TODO("Not yet implemented")
+        return "INSERT INTO " + table + " (nome, raça, profissão, mana, ataque, ataque_mágico, defesa, defesa_mágica, " +
+                "velocidade, destreza, xp, nível) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
     }
 
     override fun getSelectAllString(table: String): String {
-        TODO("Not yet implemented")
+        return "SELECT * FROM " + table
     }
 
     override fun getSelectConditionalString(table: String): String {
-        TODO("Not yet implemented")
+        return "SELECT * FROM " + table + " WHERE "
     }
 }
