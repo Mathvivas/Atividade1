@@ -3,5 +3,5 @@
 //                       velocidade integer, destreza integer, xp integer, nível integer);
 
 fun main() {
-    
+
 }
