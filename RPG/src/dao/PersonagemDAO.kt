@@ -3,73 +3,18 @@ package dao
 import models.Personagem
 import java.lang.Exception
 import java.sql.*
-import java.util.*
 
 class PersonagemDAO : DAO<Personagem>, DAOFields {
 
-    object Database {
-        internal var conn : Connection? = null
-        internal var username = "username"
-        internal var password = "password"
+    private var conn : Connection? = null
+    private var myDBConnectionString : String = "jdbc:sqlite:Personagem.db"
 
-        @JvmStatic fun main(args : Array<String>) {
-            getConnection()
+    init {
+        try {
+            conn = DriverManager.getConnection(myDBConnectionString)
 
-            executeMySQLQuery()
-        }
-
-        fun executeMySQLQuery() {
-            var stmt : Statement? = null
-            var resultSet : ResultSet? = null
-            try {
-                stmt = conn!!.createStatement()
-                resultSet = stmt!!.executeQuery("SHOW DATABASES;")
-                if (stmt.execute("SHOW DATABASES;")) {
-                    resultSet = stmt.resultSet
-                }
-
-                while (resultSet!!.next()) {
-                    println(resultSet.getString("Database"))
-                }
-            } catch (ex : SQLException) {
-                ex.printStackTrace()
-            } finally {
-                if (resultSet != null) {
-                    try {
-                        resultSet.close()
-                    } catch (sqlEx : SQLException) {}
-                    resultSet = null
-                }
-                if (stmt != null) {
-                    try {
-                        stmt.close()
-                    } catch (sqlEx : SQLException) {}
-                    stmt = null
-                }
-                if (conn != null) {
-                    try {
-                        conn!!.close()
-                    } catch (sqlEx : SQLException) {}
-                    conn = null
-                }
-            }
-        }
-
-        fun getConnection() {
-            val connectionProps = Properties()
-            connectionProps.put("user", username)
-            connectionProps.put("password", password)
-            try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance()
-                conn = DriverManager.getConnection(  "jdbc:" + "mysql" + "://" +
-                        "127.0.0.1" +
-                        ":" + "3306" + "/" +
-                        "", connectionProps)
-            } catch (ex : SQLException) {
-                ex.printStackTrace()
-            } catch (ex : Exception) {
-                ex.printStackTrace()
-            }
+        } catch (throwables : SQLException) {
+            throwables.printStackTrace()
         }
     }
 
@@ -90,7 +35,12 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     }
 
     override fun delete(t: Personagem) {
-        TODO("Not yet implemented")
+        try {
+            val statement : PreparedStatement = conn!!.prepareStatement(getDeleteString(getTableName()))
+
+        } catch (e : Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun getTableName(): String { return "Personagem" }
