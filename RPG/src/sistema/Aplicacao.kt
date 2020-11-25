@@ -80,4 +80,48 @@ class Aplicacao {
         velocidade!!.toInt(), destreza!!.toInt(), xp!!.toInt(), nivel!!.toInt()))
     }
 
+    fun deletarPersonagem() {
+        print("Digite o nome do personagem que quer deletar: ")
+        var nome = readLine()
+        var personagem = Personagem(nome!!)
+        personagemDAO.delete(personagem)
+    }
+
+    fun exibirPersonagens() {
+        var personagens = personagemDAO.getAll()
+        println("Personagens: ")
+        personagens.forEach { personagem -> println(personagem) }
+    }
+
+    fun cadastrarNovoPersonagem() {
+        print("Digite o nome do Personagem: ")
+        var name = readLine()
+        print("Digite a raça do Personagem: ")
+        var raca = readLine()
+        print("Digite a profissão do Personagem: ")
+        var profissao = readLine()
+        print("Digite a mana do Personagem: ")
+        var mana = readLine()
+        print("Digite o ataque do Personagem: ")
+        var ataque = readLine()
+        print("Digite o ataque mágico do Personagem: ")
+        var ataque_mágico = readLine()
+        print("Digite a defesa do Personagem: ")
+        var defesa = readLine()
+        print("Digite a defesa mágica do Personagem: ")
+        var defesa_mágica = readLine()
+        print("Digite a velocidade do Personagem: ")
+        var velocidade = readLine()
+        print("Digite a destreza do Personagem: ")
+        var destreza = readLine()
+        print("Digite o xp do Personagem: ")
+        var xp = readLine()
+        print("Digite o nível do Personagem: ")
+        var nivel = readLine()
+
+        personagemDAO.update(Personagem(name.toString(), raca.toString(), profissao.toString(), mana!!.toInt(),
+            ataque!!.toInt(), ataque_mágico!!.toInt(), defesa!!.toInt(), defesa_mágica!!.toInt(),
+            velocidade!!.toInt(), destreza!!.toInt(), xp!!.toInt(), nivel!!.toInt()))
+    }
+
 }
