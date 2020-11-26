@@ -26,7 +26,7 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
             val result : ResultSet = statement.executeQuery(getSelectConditionalString(getTableName() + condition))
 
             while (result.next()) {
-                val personagem : Personagem = Personagem(
+                val personagem = Personagem(
                     result.getString("nome"),
                 result.getString("raça"), result.getString("profissão"), result.getInt("mana"),
                 result.getInt("ataque"), result.getInt("ataque_mágico"), result.getInt("defesa"),
@@ -50,7 +50,7 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
             val result : ResultSet = statement.executeQuery(getSelectAllString(getTableName()))
 
             while (result.next()) {
-                val personagem : Personagem = Personagem(
+                var personagem = Personagem(
                     result.getString("nome"),
                     result.getString("raça"), result.getString("profissão"), result.getInt("mana"),
                     result.getInt("ataque"), result.getInt("ataque_mágico"), result.getInt("defesa"),
@@ -70,9 +70,9 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     override fun update(personagem : Personagem) {
         try {
             val preparedStatement : PreparedStatement = conn!!.prepareStatement(getUpdateString(getTableName()))
-            preparedStatement.setString(1, personagem.nome.toString())
-            preparedStatement.setString(2, personagem.raça.toString())
-            preparedStatement.setString(3, personagem.profissão.toString())
+            preparedStatement.setString(1, personagem.nome)
+            preparedStatement.setString(2, personagem.raça)
+            preparedStatement.setString(3, personagem.profissão)
             preparedStatement.setString(4, personagem.mana.toString())
             preparedStatement.setString(5, personagem.ataque.toString())
             preparedStatement.setString(6, personagem.ataque_mágico.toString())
@@ -82,7 +82,7 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
             preparedStatement.setString(10, personagem.destreza.toString())
             preparedStatement.setString(11, personagem.xp.toString())
             preparedStatement.setString(12, personagem.nível.toString())
-            preparedStatement.setString(13, personagem.nome.toString())
+            preparedStatement.setString(13, personagem.nome)
 
 
             val retorno : Int = preparedStatement.executeUpdate()
@@ -95,9 +95,9 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     override fun create(personagem: Personagem) {
         try {
             val preparedStatement : PreparedStatement = conn!!.prepareStatement(getUpdateString(getTableName()))
-            preparedStatement.setString(1, personagem.nome.toString())
-            preparedStatement.setString(2, personagem.raça.toString())
-            preparedStatement.setString(3, personagem.profissão.toString())
+            preparedStatement.setString(1, personagem.nome)
+            preparedStatement.setString(2, personagem.raça)
+            preparedStatement.setString(3, personagem.profissão)
             preparedStatement.setString(4, personagem.mana.toString())
             preparedStatement.setString(5, personagem.ataque.toString())
             preparedStatement.setString(6, personagem.ataque_mágico.toString())
@@ -118,7 +118,7 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     override fun delete(personagem: Personagem) {
         try {
             val statement : PreparedStatement = conn!!.prepareStatement(getDeleteString(getTableName()))
-            statement.setString(1, personagem.nome.toString())
+            statement.setString(1, personagem.nome)
             statement.executeUpdate()
 
         } catch (e : Exception) {

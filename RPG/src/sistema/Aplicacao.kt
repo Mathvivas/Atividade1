@@ -8,7 +8,7 @@ class Aplicacao {
     private val personagemDAO : PersonagemDAO
 
     init {
-        personagem = ArrayList<Personagem>()
+        personagem = ArrayList()
         personagemDAO = PersonagemDAO()
     }
 
