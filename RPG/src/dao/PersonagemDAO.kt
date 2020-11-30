@@ -135,7 +135,7 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     override fun getTableName(): String { return "Personagem" }
 
     override fun getDeleteString(table: String): String {
-        return "DELETE FROM " + table + "WHERE nome = ?;"
+        return "DELETE FROM " + table + " WHERE nome = ?;"
     }
 
     override fun getUpdateString(table: String): String {
