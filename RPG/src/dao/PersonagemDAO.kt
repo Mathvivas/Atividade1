@@ -133,7 +133,7 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
     }
 
     override fun getUpdateString(table: String): String {
-         return "UPDATE " + table + " SET nome = ?, raça = ?, profissão = ?, ataque = ?, ataque_mágico = ?," +
+         return "UPDATE " + table + " SET nome = ?, raça = ?, profissão = ?, mana = ?, ataque = ?, ataque_mágico = ?," +
                  "defesa = ?, defesa_mágica = ?, velocidade = ?, destreza = ?, xp = ?, nível = ? WHERE nome = ?;"
     }
 
