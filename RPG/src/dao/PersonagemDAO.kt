@@ -4,6 +4,12 @@ import models.Personagem
 import java.lang.Exception
 import java.sql.*
 
+/**
+ * Classe que representa o Personagem no Banco de Dados. Implementa os métodos das Interfaces.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
+
 class PersonagemDAO : DAO<Personagem>, DAOFields {
 
     private var conn : Connection? = null
@@ -75,9 +81,9 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
             preparedStatement.setString(3, personagem.profissão)
             preparedStatement.setString(4, personagem.mana.toString())
             preparedStatement.setString(5, personagem.ataque.toString())
-            preparedStatement.setString(6, personagem.ataque_mágico.toString())
+            preparedStatement.setString(6, personagem.ataqueMagico.toString())
             preparedStatement.setString(7, personagem.defesa.toString())
-            preparedStatement.setString(8, personagem.defesa_mágica.toString())
+            preparedStatement.setString(8, personagem.defesaMagica.toString())
             preparedStatement.setString(9, personagem.velocidade.toString())
             preparedStatement.setString(10, personagem.destreza.toString())
             preparedStatement.setString(11, personagem.xp.toString())
@@ -100,9 +106,9 @@ class PersonagemDAO : DAO<Personagem>, DAOFields {
             preparedStatement.setString(3, personagem.profissão)
             preparedStatement.setString(4, personagem.mana.toString())
             preparedStatement.setString(5, personagem.ataque.toString())
-            preparedStatement.setString(6, personagem.ataque_mágico.toString())
+            preparedStatement.setString(6, personagem.ataqueMagico.toString())
             preparedStatement.setString(7, personagem.defesa.toString())
-            preparedStatement.setString(8, personagem.defesa_mágica.toString())
+            preparedStatement.setString(8, personagem.defesaMagica.toString())
             preparedStatement.setString(9, personagem.velocidade.toString())
             preparedStatement.setString(10, personagem.destreza.toString())
             preparedStatement.setString(11, personagem.xp.toString())
