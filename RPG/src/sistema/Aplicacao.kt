@@ -3,6 +3,12 @@ package sistema
 import dao.PersonagemDAO
 import models.Personagem
 
+/**
+ * Classe responsável pelo sistema principal do programa. Ela é quem interage com o usuário.
+ * @author Gabriel de Godoy Braz - 17.00163-3
+ * @author Matheus Lopes Vivas - 17.04401-4
+ */
+
 class Aplicacao {
     private val personagem : List<Personagem>
     private val personagemDAO : PersonagemDAO
