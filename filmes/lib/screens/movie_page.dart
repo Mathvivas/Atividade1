@@ -52,7 +52,7 @@ class _MoviePageState extends State<MoviePage> {
 
   _buildAppBar() {
     return AppBar(
-      title: Text(appName),
+      title: Text(kAppName),
       actions: [
         IconButton(
           icon: Icon(Icons.refresh),

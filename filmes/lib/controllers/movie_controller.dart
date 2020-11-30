@@ -12,21 +12,21 @@ class MovieController {
   int get currentPage => movieResponseModel?.page ?? 1;
 
   Future<Either<MovieError, MovieResponseModel>> fetchAllMovies(
-      {int page = 1}) async {
-    movieError = null;
-    final result = await _repository.fetchAllMovies(page);
-    result.fold(
-          (error) => movieError = error,
-          (movie) {
-        if (movieResponseModel == null) {
-          movieResponseModel = movie;
-        } else {
-          movieResponseModel.page = movie.page;
-          movieResponseModel.movies.addAll(movie.movies);
-        }
-      },
-    );
+  {int page = 1}) async {
+      movieError = null;
+      final result = await _repository.fetchAllMovies(page);
+      result.fold(
+            (error) => movieError = error,
+            (movie) {
+          if (movieResponseModel == null) {
+            movieResponseModel = movie;
+          } else {
+            movieResponseModel.page = movie.page;
+            movieResponseModel.movies.addAll(movie.movies);
+          }
+        },
+      );
 
-    return result;
+      return result;
   }
 }
