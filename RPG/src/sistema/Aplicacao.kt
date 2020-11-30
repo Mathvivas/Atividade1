@@ -90,7 +90,7 @@ class Aplicacao {
     fun exibirPersonagens() {
         var personagens = personagemDAO.getAll()
         println("Personagens: ")
-        personagens.forEach { personagem -> println(personagem) }
+        for ( personagem in personagens ) println(personagem)
     }
 
     fun cadastrarNovoPersonagem() {
@@ -105,11 +105,11 @@ class Aplicacao {
         print("Digite o ataque do Personagem: ")
         var ataque = readLine()
         print("Digite o ataque mágico do Personagem: ")
-        var ataque_mágico = readLine()
+        var ataqueMagico = readLine()
         print("Digite a defesa do Personagem: ")
         var defesa = readLine()
         print("Digite a defesa mágica do Personagem: ")
-        var defesa_mágica = readLine()
+        var defesaMagica = readLine()
         print("Digite a velocidade do Personagem: ")
         var velocidade = readLine()
         print("Digite a destreza do Personagem: ")
@@ -119,8 +119,8 @@ class Aplicacao {
         print("Digite o nível do Personagem: ")
         var nivel = readLine()
 
-        personagemDAO.update(Personagem(name.toString(), raca.toString(), profissao.toString(), mana!!.toInt(),
-            ataque!!.toInt(), ataque_mágico!!.toInt(), defesa!!.toInt(), defesa_mágica!!.toInt(),
+        personagemDAO.create(Personagem(name.toString(), raca.toString(), profissao.toString(), mana!!.toInt(),
+            ataque!!.toInt(), ataqueMagico!!.toInt(), defesa!!.toInt(), defesaMagica!!.toInt(),
             velocidade!!.toInt(), destreza!!.toInt(), xp!!.toInt(), nivel!!.toInt()))
     }
 
